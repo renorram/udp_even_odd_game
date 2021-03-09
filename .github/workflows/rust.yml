@@ -23,6 +23,7 @@ jobs:
     - name: release
       uses: softprops/action-gh-release@v1
       with:
+        if: startsWith(github.ref, 'refs/tags/')
         files: target/release/even_odd_game
         prerelease: true
         tag_name: ${{ github.ref }}
@@ -40,8 +41,11 @@ jobs:
       - name: Build Release
         run: cargo build --release --verbose
       - name: release
-        uses: alexellis/upload-assets@0.3.0
+        uses: softprops/action-gh-release@v1
+        with:
+          if: startsWith(github.ref, 'refs/tags/')
+          files: target\release\even_odd_game.exe
+          prerelease: true
+          tag_name: ${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        with:
-          asset_paths: '["./target/release/*.exe"]'
