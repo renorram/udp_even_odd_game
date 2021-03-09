@@ -21,11 +21,11 @@ jobs:
     - name: Build release
       run: cargo build --release --verbose
     - name: release
-        uses: alexellis/upload-assets@0.3.0
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          asset_paths: '["./target/release/*"]'
+      uses: alexellis/upload-assets@0.3.0
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        asset_paths: '["./target/release/*"]'
 
   publish_win:
     runs-on: windows-latest
