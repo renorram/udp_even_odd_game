@@ -21,11 +21,13 @@ jobs:
     - name: Build release
       run: cargo build --release --verbose
     - name: release
-      uses: alexellis/upload-assets@0.3.0
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/release/even_odd_game
+        prerelease: true
+        fail_on_unmatched_files: true
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      with:
-        asset_paths: '["target/release/even_odd_game"]'
 
   publish_win:
     runs-on: windows-latest
