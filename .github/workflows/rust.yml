@@ -30,8 +30,8 @@ jobs:
       - name: Build Release
         run: cargo build --release
       - name: release
-        uses: alexellis/upload-assets@0.2.2
+        uses: alexellis/upload-assets@0.3.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          asset_paths: '[".\target\release\even_odd_game"]'
+          asset_paths: '[".\target\release\udp_even_odd_game"]'
