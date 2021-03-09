@@ -19,7 +19,7 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Build release
-      run: cargo build --release --verbose
+      run: cargo build --release --verbose && ls -lah
     - name: release
       uses: alexellis/upload-assets@0.3.0
       env:
