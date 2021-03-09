@@ -25,7 +25,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        asset_paths: '["./target/release/even_odd_game"]'
+        asset_paths: '["target/release/even_odd_game"]'
 
   publish_win:
     runs-on: windows-latest
