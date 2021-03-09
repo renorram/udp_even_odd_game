@@ -25,7 +25,7 @@ jobs:
       with:
         files: target/release/even_odd_game
         prerelease: true
-        fail_on_unmatched_files: true
+        tag_name: ${{ github.ref }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
