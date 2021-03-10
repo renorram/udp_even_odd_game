@@ -1,0 +1,46 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*.*'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: cargo test --verbose
+      - name: Build release
+        run: cargo build --release --verbose
+      - name: release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: target/release/even_odd_game
+          tag_name: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+  publish_win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: cargo test --verbose
+      - name: Build Release
+        run: cargo build --release --verbose
+      - name: release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: target\release\even_odd_game.exe
+          tag_name: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
