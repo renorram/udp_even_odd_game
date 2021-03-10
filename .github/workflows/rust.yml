@@ -22,8 +22,8 @@ jobs:
       run: cargo build --release --verbose
     - name: release
       uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        if: startsWith(github.ref, 'refs/tags/')
         files: target/release/even_odd_game
         prerelease: true
         tag_name: ${{ github.ref }}
@@ -42,8 +42,8 @@ jobs:
         run: cargo build --release --verbose
       - name: release
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          if: startsWith(github.ref, 'refs/tags/')
           files: target\release\even_odd_game.exe
           prerelease: true
           tag_name: ${{ github.ref }}
